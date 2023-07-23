@@ -1,0 +1,316 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cargo booking application</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+
+    <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/assets/css/now-ui-dashboard.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+<style>
+    
+    span{
+        font: 17px sans-serif;
+    }
+    p{
+        font-size: 20px !important;
+    }
+
+        img {
+            background-color: transparent;
+        }
+
+        .dashboard-icon {
+            height: 20px;
+            width: 20px;
+            margin-left: 10px;
+            margin-right: 15px;
+        }
+
+        .dashboard-panel {
+            min-height: 200px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 12px;
+            box-shadow: 4px 4px 4px rgb(159, 167, 167);
+        }
+
+
+
+           @{
+               string highlighted = "white";
+               string tab1 = "transparent";
+               string tab2 = "transparent";
+               string tab3 = "transparent";
+               string tab4 = "transparent";
+               string color1 = "white";
+               string color2 = "white";
+               string color3 = "white";
+               string color4 = "white";
+
+               switch (ViewBag.currenttab)
+               {
+                   case "dashboard":
+                       tab1 = highlighted;
+                       color1 = "black";
+                       break;
+                   case "bookings":
+                       tab2 = highlighted;
+                       color2 = "black";
+                       break;
+                   case "cargobookings":
+                       tab3 = highlighted;
+                       color3 = "black";
+                       break;
+                   case "routes":
+                       tab4 = highlighted;
+                       color4 = "black";
+                       break;
+                   default:
+                       break;
+               }
+
+
+        }
+
+
+
+
+           .tabcommon{
+               border-radius: 15px;
+           }
+
+
+
+    .dashboard_tab{
+        background-color: @tab1;
+        color: @color1;
+    }
+    .booking_tab {
+        background-color: @tab2;
+           color : @color2;
+    }
+    .cargo_tab {
+        background-color: @tab3;
+           color : @color3;
+    }
+    .route_tab {
+        background-color: @tab4;
+           color : @color4;
+    }
+
+
+    .dashboard_tab a p{
+       color : @color1;
+    }
+
+    .booking_tab a p{
+        color : @color2;
+    }
+    .cargo_tab a p{
+        color : @color3;
+    }
+    .route_tab a p{
+       color : @color4;
+    }
+    
+    .yes{
+        text-decoration: none !important;
+    }
+    .yes:hover{
+        color:white;
+    }
+    .no{
+        text-decoration: none !important;
+        color:#606060;
+    }
+    .no:hover{
+        color:#a0a0a0;
+    }
+.button, a.button {
+  display: inline-block;
+  padding: 0.25em 1em;
+  box-sizing: border-box;
+  background: #ffffff;
+  color: #606060;
+  text-decoration: none;
+  letter-spacing: 0.075em;
+  line-height: 2rem;
+  font-family: Raleway, Open Sans, Arial;
+  font-weight: 300;
+  font-size: 20px;
+  border-radius: 10px;
+  border: 1px solid #e0e0e0;
+  margin-left: 15px;
+  margin-right: 15px;
+  transition: .1s all;
+  cursor: pointer;
+}
+.button:hover, a.button:hover {
+  color: #a0a0a0;
+  background: #f8f8f8;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+  transform: scale(1.01);
+}
+.button.positive, a.button.positive {
+  border-color: #6199B7;
+  color: #6199B7 !important;
+}
+.button.positive:hover, a.button.positive:hover {
+  border-color: #468FB6;
+  color: #fff !important;
+  background-color: #468FB6;
+}
+    .c-sample{
+    top: 0;
+    transform: translate(-50%, 100%);
+    left: 50%;
+    position: absolute;
+    width: 550px;
+    }
+    .bg-modal{
+        position:absolute; 
+        top: -3px; 
+        text-align: right; 
+        right: 1px; 
+        height: 100%; 
+        width:auto; 
+        opacity: 0.2;
+    }
+    table tr{
+        height: 45px;
+    }
+</style>
+
+
+
+</head>
+
+
+<body>
+    <div class="modal fade" id="confirmlogout">
+        <div class="modal-dialog">
+            <div class="modal-content c-sample">
+                <div class="modal-header">
+                    <h3 class="modal-title" style="font-size:35px !important; padding:10px;">
+                        Confirm logout?
+                    </h3>
+                </div>
+                <div class="modal-body">
+                    <center>         
+                    <div class="button positive">
+                        <i class="fas fa-check"></i>
+                        <a href="@Url.Action("Logout", "Home")" class="yes">Yes</a>
+                    </div>
+                    <div class="button">
+                        <i class="fas fa-times"></i>
+                        <a href="@Url.Action("Dashboard", "admin")" class="no" data-toggle="modal" data-target="#confirmlogout">No</a>
+
+                      
+                    </div>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="">
+
+        <div class="sidebar" data-color="red">
+            <!--
+                Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+            -->
+            <div class="logo">
+
+
+                <img src="~/assets2/images/vertical logo-nobg-white ver.png" style="height: 120px; width:auto" />
+             
+            </div>
+            <div class="sidebar-wrapper" id="sidebar-wrapper">
+                <ul class="nav">
+                    <li class="dashboard_tab tabcommon nav-link">
+
+                        <a href="@Url.Action("Dashboard", "Admin")">
+                            <p class="fas fa-chart-line"><span>&nbsp; Dashboard</span></p> 
+                        </a>
+
+                    </li>
+
+                    <li class="route_tab tabcommon nav-link">
+                        <a href="@Url.Action("Route", "Admin")">
+                            <p class="fas fa-map-marked-alt"><span>&nbsp; Route</span></p>
+                        </a>
+                    </li>
+
+                    <li class="booking_tab tabcommon nav-link">
+                        <a href="@Url.Action("Viewbookings", "Admin")">
+                            <p class="fa fa-paper-plane"><span>&nbsp; Travel Bookings</span></p>
+                        </a>
+                    </li>
+
+                    <li class="cargo_tab tabcommon nav-link">
+                        <a href="@Url.Action("ViewCargobooking", "Admin")">
+                            <p class="fab fa-dropbox"><span>&nbsp; Cargo Bookings</span></p>
+                        </a>
+                    </li>
+
+                    <li class="active-pro nav-link">
+                        <a class="dropdown-item" data-toggle="modal" data-target="#confirmlogout">
+                            <p class="fas fa-sign-out-alt"><span>&nbsp; Logout</span></p>
+                        </a>
+                    </li>
+
+
+                  
+                </ul>
+            </div>
+        </div>
+
+
+
+
+        @RenderBody()
+
+
+
+        <script src="~/assets/js/core/jquery.min.js"></script>
+        <script src="~/assets/js/core/popper.min.js"></script>
+        <script src="~/assets/js/core/bootstrap.min.js"></script>
+        <script src="~/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+        <!--  Google Maps Plugin    -->
+        <!-- Chart JS -->
+        <script src="~/assets/js/plugins/chartjs.min.js"></script>
+        <!--  Notifications Plugin    -->
+        <script src="~/assets/js/plugins/bootstrap-notify.js"></script>
+        <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+        <script src="~/assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script><!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+        <script src="~/assets/demo/demo.js"></script>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
+</body>
+
+
+
+</html >
+
+
+
+
+

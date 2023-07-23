@@ -1,0 +1,442 @@
+﻿@model WebApplication1.Models.Route
+
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Home/_Homelayout.cshtml";
+}
+
+
+
+<style>
+
+
+
+
+    .feature {
+        padding: 100px 0;
+        background: #fff;
+        margin-top: -20px;
+    }
+
+        .feature h1 {
+            text-align: center;
+            padding-bottom: 2%;
+        }
+
+    .gallery h1 {
+        text-align: center;
+    }
+
+
+    .feature-img img {
+        width: 100%;
+    }
+
+        .feature-img img:hover {
+            transform: scale(1.1);
+        }
+
+    .price {
+        width: 50px;
+        height: 50px;
+        background: #ff5722;
+        color: #fff;
+        font-weight: 600;
+        border-radius: 50%;
+        padding: 10px;
+        box-shadow: 0 0 10px 1px rgba(37, 73, 214, 0.18);
+        position: absolute;
+        left: 3px;
+        bottom: 0px;
+    }
+
+    .feature-img {
+        position: relative;
+    }
+
+    .rating {
+        padding: 3px;
+        float: right;
+        background-color: #fff;
+        bottom: -1px;
+        right: 0;
+        position: absolute;
+    }
+
+    .feature .fa {
+        font-size: 15px;
+        color: #ff5722;
+    }
+
+    .feature-details {
+        padding: 20px;
+        text-align: justify;
+    }
+
+        .feature-details h4 {
+            font-weight: 600;
+            margin-top: 5px;
+        }
+
+        .feature-details .fa {
+            margin-right: 5px;
+        }
+
+    .gallery {
+        padding: 100px 0;
+        background: #dfdddd;
+        height: 500px;
+        margin-bottom: -79px;
+    }
+
+        .gallery h1 {
+            padding-bottom: 2%;
+            text-align: center;
+        }
+
+    .gallery-box img {
+        width: 100%;
+        border-radius: 10px;
+        cursor: pointer;
+        height: 100%;
+    }
+
+        .gallery-box img:hover {
+            transform: scale(1.1);
+        }
+
+
+
+    .gallery-box h4 {
+        display: block;
+        font-size: 20px;
+        color: #fff;
+        text-shadow: -2px 2px 2px #000;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        font-weight: 600;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+    }
+
+    .gallery-box {
+        position: relative;
+        margin-bottom: 30px;
+    }
+</style>
+
+
+
+
+
+
+
+
+@if (ViewBag.modalstate != null)
+{
+
+    <div class="modal fade" id="confirmvaxx" style="margin-top: 400px;">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h3 class="modal-title">Juanderer logistics</h3>
+
+                </div>
+                <div class="modal-dialog">
+
+                    <h5>@ViewBag.modalstate</h5>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+}
+
+
+
+
+<div class="fh5co-hero" style="color:black;">
+    <div class="fh5co-overlay"></div>
+    <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url('../../assets2/images/bgc.jpg');">
+        <div class="desc">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-md-5">
+                        <div class="tabulation animate-box">
+
+                            <!-- Nav tabs -->
+
+
+
+                            <div class="tab-title">
+                                <h4>Travel booking</h4>
+
+                            </div>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="flights">
+
+                                    <div class="row">
+
+
+                                        @using (Html.BeginForm("browseschedule", "Home", FormMethod.Post))
+                                        {
+                                            <div class="col-sm-12 mt">
+                                                <section>
+                                                    <label for="class">Origin:</label>
+                                                    @Html.DropDownListFor(m => Model.locationfrom, new SelectList(ViewBag.From1), "--select location--", new { @class = "cs-select cs-skin-border" })
+
+                                                </section>
+                                            </div>
+
+
+                                            <div class="col-sm-12 mt">
+                                                <section>
+                                                    <label for="class">Destination:</label>
+                                                    @Html.DropDownListFor(m => Model.locationto, new SelectList(ViewBag.To1), "--select location--", new { @class = "cs-select cs-skin-border" })
+
+                                                </section>
+                                            </div>
+
+
+                                            <div class="col-sm-12 mt">
+                                                <section>
+                                                    <label for="class">Type:</label>
+                                                    @Html.DropDownListFor(m => Model.mode, new SelectList(ViewBag.Mode1), "--select location--", new { @class = "cs-select cs-skin-border" })
+
+                                                </section>
+                                            </div>
+
+                                            <div class="col-xs-12">
+                                                <input type="submit" class="btn btn-primary btn-block" value="Browse Schedules">
+                                            </div>
+
+
+                                        }
+
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="desc2 animate-box">
+                        <div class="col-sm-7 col-sm-push-1 col-md-7 col-md-push-1">
+                            <h2 style="color:#db504a">Juanderer Travel and Cargo Booking</h2>
+                            <h3 style="color:#db504a; font-size:30px;">Land - Air - Sea</h3>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="feature">
+    <h1>Our Transportation</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <div class="feature-img">
+
+                        <img src="~/assets2/images/11.jpg" />
+
+
+
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                    </div>
+
+                    <div class="feature-details">
+                        <h4>Ship</h4>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa deleniti
+                            expedita assumenda perferendis tempora fuga aliquid, repellendus fugiat dolores quia!
+                        </p>
+
+                        <div>
+                            <span><i class="fa fa-map-marker"></i> Los Angeles</span>
+                            <span><i class="fa fa-sun-o"></i> 4 Days</span>
+                            <span><i class="fa fa-moon-o"></i> 1 Night</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <div class="feature-img">
+
+                        <img src="~/assets2/images/22.jpg" />
+
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                    </div>
+
+                    <div class="feature-details">
+                        <h4>Plane</h4>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa deleniti
+                            expedita assumenda perferendis tempora fuga aliquid, repellendus fugiat dolores quia!
+                        </p>
+
+                        <div>
+                            <span><i class="fa fa-map-marker"></i> Los Angeles</span>
+                            <span><i class="fa fa-sun-o"></i> 4 Days</span>
+                            <span><i class="fa fa-moon-o"></i> 1 Night</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+            <div class="col-md-4">
+                <div class="feature-box">
+                    <div class="feature-img">
+                        <img src="~/assets2/images/33.jpg" />
+
+
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-half-o"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                    </div>
+
+                    <div class="feature-details">
+                        <h4>Truck</h4>
+                        <p>
+                            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa deleniti
+                            expedita assumenda perferendis tempora fuga aliquid, repellendus fugiat dolores quia!
+                        </p>
+
+                        <div>
+                            <span><i class="fa fa-map-marker"></i> Los Angeles</span>
+                            <span><i class="fa fa-sun-o"></i> 4 Days</span>
+                            <span><i class="fa fa-moon-o"></i> 1 Night</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</section>
+
+<section class="gallery">
+    <h1>Warehouse</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="gallery-box">
+
+
+                    <img src="~/assets2/images/warehouse1.jpg" style="height: 210px;" />
+                    <h4></h4>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="gallery-box">
+
+
+                    <img src="~/assets2/images/warehouse2.png" style="height: 210px;" />
+                    <h4></h4>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="gallery-box">
+
+
+                    <img src="~/assets2/images/warehouse3.jpg" style="height: 210px;" />
+                    <h4></h4>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="gallery-box">
+
+
+                    <img src="~/assets2/images/warehouse4.png" style="height: 210px;" />
+                    <h4>
+                        L
+                    </h4>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#confirmvaxx").modal('show');
+
+        });
+    </script>
+
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

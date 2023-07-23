@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="booklog" />
+    </Key>
+    <Property Name="booklog" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="schedule_id" Type="Int32" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="passenger_info_id" Type="Int32" />
+    <Property Name="numberofpassengers" Type="Int32" />
+    <Property Name="numberofseniour" Type="Int32" />
+    <Property Name="paymentoption" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="paymentstatus" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="clientemail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="clientnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="datecreated" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="route_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Cargobooking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="datecreated" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="itemweight" Type="Double" />
+    <Property Name="user_id" Type="Int32" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="schedule_id" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Groupbooking">
+    <Key>
+      <PropertyRef Name="group_id" />
+    </Key>
+    <Property Name="group_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="schedule_id" Type="Int32" />
+    <Property Name="discount" Type="Double" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="groupId" />
+    </Key>
+    <Property Name="groupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="datecreated" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PassengerInfo">
+    <Key>
+      <PropertyRef Name="info_id" />
+    </Key>
+    <Property Name="info_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="groupnumber" Type="Int32" />
+    <Property Name="firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="middle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="age" Type="Int32" />
+    <Property Name="passengertype" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="isEnsured" Type="Boolean" />
+    <Property Name="isVaxxed" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Route">
+    <Key>
+      <PropertyRef Name="route_id" />
+    </Key>
+    <Property Name="route_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="locationfrom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="locationto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="terminalfrom" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="terminalto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="updatedpriceregular_" Type="Double" />
+    <Property Name="updatedpricetourist" Type="Double" />
+    <Property Name="updatedpricebusiness" Type="Double" />
+    <Property Name="updatedpricebusiness2" Type="Double" />
+    <Property Name="mode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="updatedpricecargo" Type="Double" />
+  </EntityType>
+  <EntityType Name="Schedule">
+    <Key>
+      <PropertyRef Name="schedule_id" />
+    </Key>
+    <Property Name="schedule_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transport_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="departuretime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="arrivaltime" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="route_id" Type="Int32" />
+    <Property Name="priceregular" Type="Double" />
+    <Property Name="pricetourist" Type="Double" />
+    <Property Name="pricebusiness" Type="Double" />
+    <Property Name="pricebusiness2" Type="Double" />
+    <Property Name="sched_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="booklimit" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Terminal">
+    <Key>
+      <PropertyRef Name="terminal_id" />
+    </Key>
+    <Property Name="terminal_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="terminal_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="terminal_location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="transport">
+    <Key>
+      <PropertyRef Name="transport_id" />
+    </Key>
+    <Property Name="transport_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="transport_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="transport_type" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="transport_status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="usertype" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="contactnumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="vaccinated" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="Database1Entities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Bookings" EntityType="Self.Booking" />
+    <EntitySet Name="Cargobookings" EntityType="Self.Cargobooking" />
+    <EntitySet Name="Groupbookings" EntityType="Self.Groupbooking" />
+    <EntitySet Name="Groups" EntityType="Self.Group" />
+    <EntitySet Name="PassengerInfoes" EntityType="Self.PassengerInfo" />
+    <EntitySet Name="Routes" EntityType="Self.Route" />
+    <EntitySet Name="Schedules" EntityType="Self.Schedule" />
+    <EntitySet Name="Terminals" EntityType="Self.Terminal" />
+    <EntitySet Name="transports" EntityType="Self.transport" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+  </EntityContainer>
+</Schema>

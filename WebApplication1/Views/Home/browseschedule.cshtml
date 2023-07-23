@@ -1,0 +1,227 @@
+﻿@model WebApplication1.Models.Route
+
+
+
+
+@{
+    ViewBag.Title = "browseschedule";
+    Layout = "~/Views/Home/_Homelayout.cshtml";
+}
+
+
+
+<style>
+    table {
+      
+        width : 100%;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    tr{
+      height:50px;
+    }
+
+        tr:nth-child(even) {
+            background-color: #f8dfdf;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #faebeb;
+        }
+
+    th {
+        background-color: #ea5959 ;
+        color: black;
+        text-align: center;
+    }
+
+</style>
+
+
+
+
+
+
+
+<div class="fh5co-hero">
+    <div class="fh5co-overlay"></div>
+    <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url('../../assets2/images/bgc.jpg'); overflow: auto; height:900px;">
+        <div class="desc">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-md-3">
+                        <div class="tabulation animate-box">
+
+                            <!-- Nav tabs -->
+                            <div class="tab-title">
+                                <h4>Travel booking</h4>
+
+                            </div>
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="flights">
+
+
+
+                                    <div class="row">
+
+
+                                        @using (Html.BeginForm("browseschedule", "Home", FormMethod.Post))
+                                        {
+                                            <div class="col-sm-12 mt">
+                                                <section>
+                                                    <label for="class">Origin:</label>
+                                                    @Html.DropDownListFor(m => Model.locationfrom, new SelectList(ViewBag.From1), "--select location--", new { @class = "cs-select cs-skin-border" })
+
+                                                </section>
+                                            </div>
+
+
+                                            <div class="col-sm-12 mt">
+                                                <section>
+                                                    <label for="class">Destination:</label>
+                                                    @Html.DropDownListFor(m => Model.locationto, new SelectList(ViewBag.To1), "--select location--", new { @class = "cs-select cs-skin-border" })
+
+                                                </section>
+                                            </div>
+
+
+                                            <div class="col-sm-12 mt">
+                                                <section>
+                                                    <label for="class">type:</label>
+                                                    @Html.DropDownListFor(m => Model.mode, new SelectList(ViewBag.Mode1), "--select location--", new { @class = "cs-select cs-skin-border" })
+
+                                                </section>
+                                            </div>
+
+                                            <div class="col-xs-12">
+                                                <input type="submit" class="btn btn-primary btn-block" value="Browse ">
+                                            </div>
+
+
+                                        }
+
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+                    <div class="col-sm-7 col-md-9">
+                        <div class="tabulation animate-box" style="padding:40px; border-radius:30px;">
+
+                            <!-- Nav tabs -->
+                            <div class="nav nav-tabs" style="text-align:center; margin-top: 20px; font-size:30px;">
+                               
+                                    <a>Schedules</a>
+                             
+
+                            </div>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="flights">
+                                    <div class="row">
+                                        <table style="color: rgb(119, 59, 59);">
+                                            <tr>
+                                                <th>
+                                                    Origin
+                                                </th>
+                                                <th>
+                                                    Destination
+                                                </th>
+                                                <th>
+                                                    Departure
+
+                                                <th>
+                                                    Arrival
+
+                                                </th>
+                                                <th>
+                                                    Type
+                                                </th>
+                                                <th></th>
+                                            </tr>
+                                            @foreach(var e in ViewBag.Schedule1)
+                                            {
+                                              
+                                                <tr>
+
+                                                    <td>
+                                                        @e.locationfrom
+                                                    </td>
+                                                    <td>
+                                                        @e.locationto
+                                                    </td>
+                                                    <td>
+                                                        @e.departuretime
+                                                    </td>
+                                                    <td>
+                                                        @e.arrivaltime
+                                                    </td>
+                                                    <td>
+                                                        @e.mode
+                                                    </td>
+                                                 
+
+
+                                                   
+
+                                                    <td> @Html.ActionLink("Schedule", "checkschedule", "Home", new { index = @e.sched_id }, null)</td>
+                                                </tr>
+                                            }
+
+
+
+                                        </table>
+
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

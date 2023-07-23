@@ -1,0 +1,327 @@
+﻿@model WebApplication1.Models.ycheckSchedule
+
+@{
+    ViewBag.Title = "checkschedule";
+    Layout = "~/Views/Home/_Homelayout.cshtml";
+}
+
+
+
+@if (ViewBag.numberpassengertemp != null)
+{
+
+    <div class="modal fade" id="confirmvaxx" style="margin-top: 400px;">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h3 class="modal-title" style="text-transform:uppercase; text-align:center; font-size: 30px;">Vaccination confirmation</h3>
+
+                </div>
+                <div class="modal-dialog">
+
+                    <center><h2 style="text-transform:uppercase; font-size: 20px"> Data Privacy Act Consent Form</h2></center>
+                    <h5 style="margin: 5%; font-size: 15px;">
+
+
+                        its parent companies, subsidiaries and affiliates collects and processes your personal information (“data”) to comply with requirements under the law, to fulfill legitimate and commercial business transactions, to fully deliver the services in relation to your transaction with us, to improve our products, services, and processes, and enhance your customer experience. When applicable and pursuant to the aforementioned purposes, your data will be processed by our authorized service providers and carriers. These may be transferred to competent government bodies, courts or regulatory authorities as may be required. Your data shall be processed in accordance with the Data Privacy Act (DPA) and its Implementing Rules and Regulations. For more information on how your data will be processed and to know your rights under the DPA, please read the Privacy Policy posted in our outlets <br><br>
+
+                        By proceeding with this transaction, you confirm that you read, understand, and agree Privacy Policy and the data processing purposes stated above. Please be informed that your rights to: (1)be informed, (2)object, (3)access, (4)dispute errors, (5)erasure, (6)damages, (7) data portability are fully respected. You may opt out at any time by sending an email to dataprivacy.com.ph.
+                    </h5>
+
+
+                    @using (Html.BeginForm("InputPassengerInfo", "Home", FormMethod.Post))
+                    {
+
+
+                        @Html.AntiForgeryToken()
+
+                        @Html.HiddenFor(Model => Model.numberofpassengers, new { @Value = ViewBag.numberpassengertemp })
+
+
+                        <input type="submit" class="btn btn-primary btn-block" value="Continue">
+
+                    }
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+}
+
+
+
+<div class="fh5co-hero">
+    <div class="fh5co-overlay"></div>
+    <div class="fh5co-cover" data-stellar-background-ratio="0.5" style=" background-image:  url('../../assets2/images/bgc.jpg'); overflow: auto; height: 900px;">
+        <div class="desc">
+            <div class="container">
+
+
+
+                <div class="row">
+                    <div class="col-sm-5 col-md-5">
+                        <div class="tabulation animate-box">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#flights" aria-controls="flights" role="tab" data-toggle="tab" style="border-top-left-radius: 30px">Travel booking</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab">Cargo</a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="flights">
+                                    <div class="row">
+
+
+                                        @using (Html.BeginForm("confirmvaxx", "Home", FormMethod.Post))
+                                        {
+
+
+                                            @Html.AntiForgeryToken()
+
+                                            <div class="col-xxs-12 col-xs-12 mt">
+                                                <section>
+                                                    <label>number of passengers 3 years old and above:</label>
+
+                                                    @Html.DropDownListFor(m => Model.numberofpassengers, new SelectList(ViewBag.temp8), "select number of passenger", new { @class = "cs-select cs-skin-border" })
+
+                                                    @Html.ValidationMessageFor(model => model.numberofpassengers, "", new { @class = "text-danger" })
+
+                                                </section>
+                                            </div>
+
+
+
+
+                                            <div class="col-xs-12">
+                                                <input type="submit" class="btn btn-primary btn-block" value="Continue">
+                                            </div>
+
+
+
+                                        }
+
+
+                                    </div>
+
+
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane" id="hotels">
+                                    <div class="row">
+
+
+                                        <h3 style="color:black; margin-left: 40px">Cargo rate per kilo : P @ViewBag.pricecargo</h3>
+
+                                        @using (Html.BeginForm("Cargobooking", "Home", FormMethod.Post))
+                                        {
+
+
+                                            @Html.AntiForgeryToken()
+
+                                            <div class="col-xxs-12 col-xs-12 mt">
+                                                <section>
+                                                    <label>input weight in kilo:</label>
+
+                                                    @Html.EditorFor(model => model.kilo, new { htmlAttributes = new { @class = "form-control", @style = "border-style: solid; border-color: black; border-width: 2px 2px 2px 2px; color: black;", @placeholder = "input the weight" } })
+
+                                                    @Html.ValidationMessageFor(model => model.kilo, "", new { @class = "text-danger" })
+
+                                                </section>
+                                            </div>
+
+
+
+
+                                            <div class="col-xs-12">
+                                                <input type="submit" class="btn btn-primary btn-block" value="Continue">
+                                            </div>
+
+
+
+                                        }
+
+
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+                    <div class="col-sm-7 col-md-7" style="color: black;">
+                        <div class="tabulation animate-box">
+
+                            <!-- Nav tabs -->
+
+                            <div class="tab-title">
+                                <h4> @ViewBag.locationfrom to @ViewBag.locationto</h4>
+
+                            </div>
+
+
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div>
+
+                                    <span>departure date: @ViewBag.departuretime</span>
+                                    <br>
+                                    <span>terminal: @ViewBag.terminalfrom</span>
+                                    <br>
+                                    <span>arrival date: @ViewBag.arrivaltime</span>
+                                    <br>
+                                    <span>terminal: @ViewBag.terminalto</span>
+                                    <br>
+                                    <br>
+
+
+
+                                </div>
+
+
+
+
+
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-sm-7 col-md-7" style="color: black; margin-top : 115px">
+                        <div class="tabulation animate-box">
+                            <div class="tab-title">
+                                <h4> Accomodation</h4>
+
+                            </div>
+
+
+                            <!-- Nav tabs -->
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+
+                                <div class="row">
+
+
+
+
+
+
+                                    <div class="col-md-6">
+
+
+                                        <span>regular: P @ViewBag.priceregular </span>
+                                        <br>
+                                        <span>tourist: P @ViewBag.pricetourist</span>
+                                        <br>
+                                        <span>business class: P @ViewBag.pricebusiness</span>
+                                        <br>
+                                        <span>business class: P @ViewBag.pricebusiness2</span>
+                                        <br>
+                                        <br>
+
+                                    </div>
+
+
+                                    <div class="col-md-6">
+
+                                        @switch (ViewBag.mode1)
+                                        {
+                                            case "land":
+                                                <img src="~/assets2/images/bus.jpg" style=" border-radius: 5px; box-shadow: 20px;" />
+                                                break;
+                                            case "sea":
+                                                <img src="~/assets2/images/ship1.jpg" style=" border-radius: 5px; box-shadow: 20px;" />
+                                                break;
+                                            case "air":
+                                                <img src="~/assets2/images/airplane.jpg" style=" border-radius: 5px; box-shadow: 20px;" />
+                                                break;
+                                            default: break;
+
+
+
+                                        }
+
+
+
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#confirmvaxx").modal('show');
+
+        });
+    </script>
+
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

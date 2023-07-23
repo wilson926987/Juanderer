@@ -1,0 +1,140 @@
+﻿@model WebApplication1.Models.yUser
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Home/_Homelayout.cshtml";
+}
+
+
+
+
+
+
+
+
+
+
+
+<div class="fh5co-hero">
+    <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url('../../assets2/images/bgc.jpg'); overflow: auto; height: 900px;">
+        <div class="desc">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4" style="min-width: 250px;">
+
+                    </div>
+
+
+
+                    <div class="col-sm-5 col-md-5">
+                        <div class="tabulation animate-box">
+
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="flights">
+                                    <div class="row">
+
+
+                                        <div class="col-xxs-12 col-xs-12">
+                                            <center>
+
+                                                <img src="~/assets2/images/logo.png" style="height:200px; width :auto" />
+
+                                            </center>
+
+                                        </div>
+
+
+
+                                        @using (Html.BeginForm("trylogin", "Home", FormMethod.Post))
+                                        {
+                                            @Html.AntiForgeryToken()
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                            <center>
+                                                <div class="col-xxs-12 col-xs-12   mt" style="margin-top: 0px;">
+
+                                                    <div class="input-field">
+
+
+                                                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control", @placeholder = "USERNAME", @style = "height: 40px; width: 350px;", @autocomplete = "off" } })<br />
+                                                        @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </center>
+                                            <center>
+                                                <div class="col-xxs-12 col-xs-12 mt">
+                                                    <div class="input-field">
+
+                                                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @placeholder = "PASSWORD", @style = "height: 40px; width: 350px;", @autocomplete = "off" } })<br />
+                                                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </center>
+                                            <div style="color:black; text-align:center;">
+                                                @Html.DisplayFor(model => model.nomatchingUsers, new { @class = "text-danger" })
+                                            </div>
+
+                                            <div class="col-xs-1"
+                                                 style="min-width: 90px;"></div>
+
+
+
+
+                                            <div class="col-xs-7">
+
+                                                <input type="submit" class="btn btn-primary btn-block" value="Sign in" style="height: 50px; padding:0px;">
+                                            </div>
+                                        }
+
+
+
+
+
+                                        <div class="col-xs-3" style="min-width: 400px; margin-top: 80px;">
+
+
+                                        </div>
+
+
+                                        <div class="col-xs-6" style="font-size:20px;">
+                                            @Html.ActionLink("Sign Up", "Register", "Home")
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+    
+   
+
+
+
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,243 @@
+﻿
+
+
+
+
+
+<!DOCTYPE html>
+
+<html class="no-js">
+
+<head>
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Juanderer</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
+    <meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
+
+
+
+
+
+    <meta property="og:title" content="" />
+    <meta property="og:image" content="" />
+    <meta property="og:url" content="" />
+    <meta property="og:site_name" content="" />
+    <meta property="og:description" content="" />
+    <meta name="twitter:title" content="" />
+    <meta name="twitter:image" content="" />
+    <meta name="twitter:url" content="" />
+    <meta name="twitter:card" content="" />
+
+
+    
+
+    <link href="~/assets2/css/animate.css" rel="stylesheet" />
+
+
+
+
+    <link href="~/assets2/css/icomoon.css" rel="stylesheet" />
+
+    <!-- Bootstrap  -->
+
+    <link href="~/assets2/css/bootstrap.css" rel="stylesheet" />
+
+    <link href="~/assets2/css/superfish.css" rel="stylesheet" />
+    <!-- Magnific Popup -->
+
+    <link href="~/assets2/css/magnific-popup.css" rel="stylesheet" />
+
+    <link href="~/assets2/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <!-- CS Select -->
+    <link href="~/assets2/css/cs-select.css" rel="stylesheet" />
+
+    <link href="~/assets2/css/cs-skin-border.css" rel="stylesheet" />
+
+    <link href="~/assets2/css/style.css" rel="stylesheet" />
+
+   
+</head>
+<body>
+
+  
+
+
+    <div id="fh5co-wrapper">
+        <div id="fh5co-page">
+
+            <header id="fh5co-header-section" class="sticky-banner ">
+                <div class="container">
+                    <div class="nav-header">
+
+                        <img src="~/assets2/images/horizontal logo-nobg-white ver.png" style="height:  140px; width: auto; margin-top:-15px ; margin-bottom: -35px;">
+
+
+                        <!-- START #fh5co-menu-wrap -->
+                        <nav id="fh5co-menu-wrap" role="navigation">
+                            <ul class="sf-menu" id="fh5co-primary-menu">
+                                <li class="active">
+                                    @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "", @style = "color:#fff; font-size:20px;" })
+
+                                </li>
+
+
+                                <li>
+                                    @Html.ActionLink("Schedule", "allschedule", "Home", new { area = "" }, new { @class = "", @style = "color:#fff; font-size:20px;" })
+                                </li>
+
+
+
+                                @if (@ViewBag.Currentuser == null)
+                                {
+                                    <li>
+                                        @Html.ActionLink("Login", "Login", "Home", new { area = "" }, new { @class = "", @style = "color:#fff; font-size:20px;" })
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a class="fh5co-sub-ddown" style="color:#fff; font-size:20px; ">My profile</a>
+                                        <ul class="fh5co-sub-menu">
+
+                                            <li style="background-color:antiquewhite">
+                                                <center>
+                                                    <img src="~/assets2/images/user (1).png" style="height:60px;width:auto; margin-top:20px ; margin-bottom:20px" /><br />
+                                                    <h3>@ViewBag.Currentuser</h3>
+                                                </center>
+                                                <hr />
+                                                <hr />
+                                                <hr />
+                                            </li>
+
+                                            <li style="padding :6px">
+                                                <center>
+                                                    <div style="background-color:antiquewhite; border-radius: 12px;">
+                                                        @Html.ActionLink("My Travel bookings", "mybookingsandProfile", "Home", new { area = "" }, new { @class = "" })
+                                                    </div>
+                                                </center>
+                                            </li>
+
+                                            <li style="padding :6px">
+                                                <center>
+                                                    <div style="background-color:antiquewhite; border-radius: 12px;">
+                                                        @Html.ActionLink("My Cargo bookings", "mycargobookings", "Home", new { area = "" }, new { @class = "" })
+                                                    </div>
+                                                </center>
+                                            </li>
+
+                                            <li style="padding :6px">
+                                                <center>
+                                                    <div style="background-color:antiquewhite; border-radius: 12px;">
+                                                        @Html.ActionLink("Logout", "logout", "Home", new { area = "" }, new { @class = "" })
+                                                   
+
+                                                    </div>
+
+
+
+                                                </center>
+                                            </li>
+
+                                        </ul>
+                                    </li>
+                                }
+
+
+
+
+
+
+
+
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </header>
+
+            <!-- end:header-top -->
+
+
+        </div>
+
+
+        @RenderBody()
+        <footer>
+            <div id="footer" style="background-image: url('../../assets2/images/Capture.JPG'); min-height:250px; margin-top: 79px;">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-6 col-md-offset-3 text-center">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+
+
+    </div>
+
+
+
+    <script src="~/assets2/js/jquery.min.js"></script>
+    <!-- jQuery Easing -->
+
+    <script src="~/assets2/js/jquery.easing.1.3.js"></script>
+    <!-- Bootstrap -->
+
+    <script src="~/assets2/js/bootstrap.min.js"></script>
+    <!-- Waypoints -->
+
+    <script src="~/assets2/js/jquery.waypoints.min.js"></script>
+
+
+    <script src="~/assets2/js/sticky.js"></script>
+
+    <!-- Stellar -->
+
+    <script src="~/assets2/js/jquery.stellar.min.js"></script>
+    <!-- Superfish -->
+
+
+    <script src="~/assets2/js/hoverIntent.js"></script>
+
+
+    <script src="~/assets2/js/superfish.js"></script>
+    <script src="~/assets2/js/jquery.magnific-popup.min.js"></script>
+    <!-- Magnific Popup -->
+
+
+    <script src="~/assets2/js/magnific-popup-options.js"></script>
+
+    <!-- Date Picker -->
+
+    <script src="~/assets2/js/bootstrap-datepicker.min.js"></script>
+    <!-- CS Select -->
+
+    <script src="~/assets2/js/classie.js"></script>
+
+    <script src="~/assets2/js/selectFx.js"></script>
+
+    <!-- Main JS -->
+
+    <script src="~/assets2/js/main.js"></script>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</body>
+
+
+
+</html>
+
+

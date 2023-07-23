@@ -1,0 +1,285 @@
+﻿
+@model WebApplication1.Models.yadditionaldetails
+
+@{
+    ViewBag.Title = "additionaldetails";
+    Layout = "~/Views/Home/_Homelayout.cshtml";
+}
+
+
+<head>
+
+    @{ 
+        double price1 = @ViewBag.sen1;
+    }
+
+
+    <style>
+        .pricebox {
+          border-style: solid; 
+          border-width: 1px 1px 1px 1px;
+          margin: 1%; 
+          padding: 5px; 
+          width: 20%; 
+          border-radius: 5px; 
+          background-color: rgba(255,97,92);
+          color: black;
+          padding: 2%;
+        }
+
+
+
+
+
+
+    </style>
+
+
+
+</head>
+
+
+
+
+<div class="fh5co-hero">
+    <div class="fh5co-overlay"></div>
+    <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url('../../assets2/images/bgc.jpg'); overflow: auto; height: 900px;">
+        <div class="desc">
+            <div class="container">
+                <div class="row" style="margin-bottom: 100px;">
+                    <div class="col-sm-7 col-md-7">
+                        <div class="tabulation animate-box">
+
+
+                            <!-- Nav tabs -->
+
+                            <div class="tab-title">
+                                <h4>Accomodation Option</h4>
+
+                            </div>
+
+
+
+                            <div style="margin-top: 40px">
+                    
+                               <a href="@Url.Action("additionaldetails", "Home", new { typeofpayment = "regular"}) " class="pricebox"  > regular  </a>                                                                                                   
+                               <a href="@Url.Action("additionaldetails", "Home", new { typeofpayment = "tourist"}) " class="pricebox"  > tourist </a>                                                                                                   
+                               <a href="@Url.Action("additionaldetails", "Home", new { typeofpayment = "business"}) " class="pricebox"  > business </a>                                                                                                   
+                               <a href="@Url.Action("additionaldetails", "Home", new { typeofpayment = "business2"}) " class="pricebox" > Business 2 </a>                                                                                                   
+
+                            </div>
+
+
+
+
+
+                            <!-- Tab panes -->
+
+                            <div class="content col-lg-10" style="margin-left:auto; margin-right: auto;">
+
+                                <br>
+                                <br>  <br>
+                                <table style="color:black">
+                                    <tr>
+                                        <th>Price per head</th>
+                                        <td>P @ViewBag.pph1</td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            Gross total
+                                        </th>
+                                        <td>
+                                            P @ViewBag.gross1
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>
+                                            Senior discount
+                                        </th>
+                                        <td>
+                                            P  @price1
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>
+                                            Tax(12%)
+                                        </th>
+                                        <td>
+                                            P @ViewBag.tax1
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <th>_________</th>
+                                        <td> </td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Net total</th>
+                                        <td> P  @ViewBag.final1</td>
+                                    </tr>
+
+
+                                </table>
+                                <br><br><br>
+                            </div>
+
+
+                            @using (Html.BeginForm("finishbooking", "Home", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+
+
+                                <div class="col-xxs-12 col-xs-12 mt">
+                                    <div class="input-field">
+                                        <label>Email:</label>
+                                        @Html.EditorFor(model => model.clientEmail, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.currentEmail } })
+                                        @Html.ValidationMessageFor(model => model.clientEmail, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-xxs-12 col-xs-12  mt">
+                                    <div class="input-field">
+                                        <label>Contact:</label>
+                                        @Html.EditorFor(model => model.clientContact, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.currentContact } })
+                                        @Html.ValidationMessageFor(model => model.clientContact, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+
+                                <div class="col-xxs-12 col-xs-12  mt">
+                                    <div class="input-field">
+
+
+
+                                        @Html.CheckBoxFor(model => model.terms, new { @class = "form-control", @style = "border: #f5a46b; height: 25px; width: 25px;" })
+                                        <label>I accept terms and agreements</label>
+
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12" style="margin-bottom: 80px; color:black">
+                                    <input type="submit" class="btn btn-primary btn-block" value="Confirm Booking">
+                                    <center> @ViewBag.mustaccept</center>
+                                </div>
+                            }
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-sm-5 col-md-5" style="color: black;">
+                        <div class="tabulation animate-box">
+
+                            <!-- Nav tabs -->
+                          
+                            <div class="tab-title">
+                                <h4> @ViewBag.locationfrom to @ViewBag.locationto</h4>
+
+                            </div>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div>
+
+                                    <span>departure date: @ViewBag.departuretime</span>
+                                    <br>
+                                    <span>terminal: @ViewBag.terminalfrom</span>
+                                    <br>
+                                    <span>arrival date: @ViewBag.arrivaltime</span>
+                                    <br>
+                                    <span>terminal: @ViewBag.terminalto</span>
+                                    <br>
+                                    <br>
+
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="col-sm-5 col-md-5" style="color: black; margin-top : 115px ;">
+                        <div class="tabulation animate-box">
+
+                            <!-- Nav tabs -->
+                            <div class="tab-title">
+                                <h4> Accomodation</h4>
+                                
+                            </div>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3 style="color: black;">@ViewBag.transportname</h3>
+
+                                    </div>
+
+
+                                    <div class="col-md-6">
+
+
+                                        <span>regular: P @ViewBag.priceregular </span>
+                                        <br>
+                                        <span>tourist: P @ViewBag.pricetourist</span>
+                                        <br>
+                                        <span>business class: P @ViewBag.pricebusiness</span>
+                                        <br>
+                                        <span>business class: P @ViewBag.pricebusiness2</span>
+                                        <br>
+                                        <br>
+
+                                    </div>
+
+
+                                    <div>
+
+                                        @switch (ViewBag.mode1)
+                                        {
+                                            case "land":
+                                                <img src="~/assets2/images/bus.jpg" style=" border-radius: 5px; box-shadow: 20px;" class="col-lg-6 col-sm-12" />
+                                                break;
+                                            case "sea":
+                                                <img src="~/assets2/images/ship1.jpg" style=" border-radius: 5px; box-shadow: 20px;" class="col-lg-6 col-sm-12" />
+                                                break;
+                                            case "air":
+                                                <img src="~/assets2/images/airplane.jpg" style=" border-radius: 5px; box-shadow: 20px;" class="col-lg-6 col-sm-12" />
+                                                break;
+                                            default: break;
+
+                                        }
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+    
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

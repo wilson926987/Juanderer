@@ -1,0 +1,302 @@
+﻿
+@{
+    ViewBag.Title = "allschedule";
+    Layout = "~/Views/Home/_Homelayout.cshtml";
+}
+
+
+
+<style>
+    table {
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    tr {
+        height: 50px;
+    }
+
+        tr:nth-child(even) {
+            background-color: #f8dfdf;
+        }
+
+        tr:nth-child(odd) {
+            background-color: #faebeb;
+        }
+
+    th {
+        background-color: #ea5959;
+        color: black;
+        text-align: center;
+    }
+
+    .schedtitele{
+        font-size:30px;
+        font-weight:700;
+        color: black;
+
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="fh5co-hero">
+    <div class="fh5co-overlay"></div>
+    <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url('../../assets2/images/bgc.jpg'); overflow: auto; height: 900px;">
+        <div class="desc">
+            <div class="row">
+
+                <div class="col-md-2" style="min-height: 800px">
+
+                </div>
+
+
+
+
+
+                <div class="row">
+                    <div class="col-lg10 col-md-7" style="margin-bottom: 120px;">
+                       
+                        <div class="tabulation animate-box">
+
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#flights" aria-controls="flights" role="tab" data-toggle="tab" style="border-top-left-radius: 30px">Land</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab">Sea</a>
+                                </li>
+                                <li role="presentation">
+
+                                    <a href="#other" aria-controls="other" role="tab" data-toggle="tab">Air</a>
+                                </li>
+                            </ul>
+
+
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="flights">
+                                    <div class="row">
+
+                                        <table style="color: rgb(119, 59, 59);">
+
+                                    
+
+                                            <tr>
+
+                                                <th colspan="3">
+                                                    Departure
+                                                </th>
+
+
+                                                <th colspan="3">
+                                                    Arrival
+                                                </th>
+
+                                                <th>
+                                                    Regular Price
+                                                </th>
+                                            </tr>
+
+
+
+                                            <tbody>
+                                                @foreach (var vv in ViewBag.schedland)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @vv.locationfrom
+                                                        </td>
+                                                        <td>
+                                                            @vv.terminalfrom
+                                                        </td>
+                                                        <td style="border-right:solid white ">
+                                                            @vv.departuretime
+                                                        </td>
+
+                                                        <td>
+                                                            @vv.locationto
+                                                        </td>
+                                                        <td>
+                                                            @vv.terminalto
+                                                        </td>
+                                                        <td style="border-right:solid white ">
+                                                            @vv.arrivaltime
+                                                        </td>
+                                                        <td>
+                                                            @vv.priceregular2
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
+
+
+
+                                </div>
+
+
+                                <div role="tabpanel" class="tab-pane" id="hotels">
+
+                                    <div class="row">
+
+                                        <table style="color: rgb(119, 59, 59);">
+
+
+                                            <tr>
+
+                                                <th colspan="3">
+                                                    Departure
+                                                </th>
+
+
+                                                <th colspan="3">
+                                                    Arrival
+                                                </th>
+
+                                                <th>
+                                                    Regular Price
+                                                </th>
+                                            </tr>
+
+                                            <tbody>
+                                                @foreach (var vv in ViewBag.schedwater)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @vv.locationfrom
+                                                        </td>
+                                                        <td>
+                                                            @vv.terminalfrom
+                                                        </td>
+                                                        <td style="border-right:solid white ">
+                                                            @vv.departuretime
+                                                        </td>
+
+                                                        <td>
+                                                            @vv.locationto
+                                                        </td>
+                                                        <td>
+                                                            @vv.terminalto
+                                                        </td>
+                                                        <td style="border-right:solid white ">
+                                                            @vv.arrivaltime
+                                                        </td>
+                                                        <td>
+                                                            @vv.priceregular2
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
+
+                                </div>
+
+
+
+                                <div role="tabpanel" class="tab-pane" id="other">
+
+                                    <div class="row">
+
+                                        <table style="color: rgb(119, 59, 59);">
+
+
+                                            <tr>
+
+                                                <th colspan="3">
+                                                    Departure
+                                                </th>
+
+
+                                                <th colspan="3">
+                                                    Arrival
+                                                </th>
+
+                                                <th>
+                                                    Regular Price
+                                                </th>
+                                            </tr>
+                                            <tbody>
+                                                @foreach (var vv in ViewBag.schedair)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            @vv.locationfrom
+                                                        </td>
+                                                        <td>
+                                                            @vv.terminalfrom
+                                                        </td>
+                                                        <td style="border-right:solid white ">
+                                                            @vv.departuretime
+                                                        </td>
+
+                                                        <td>
+                                                            @vv.locationto
+                                                        </td>
+                                                        <td>
+                                                            @vv.terminalto
+                                                        </td>
+                                                        <td style="border-right:solid white ">
+                                                            @vv.arrivaltime
+                                                        </td>
+                                                        <td>
+                                                            @vv.priceregular2
+                                                        </td>
+                                                    </tr>
+                                                }
+
+                                            </tbody>
+
+                                        </table>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                 
+
+
+
+
+
+
+
+                        </div>
+
+                     </div>
+
+
+
+
+
+
+                       
+
+               </div>
+            </div>
+
+           
+
+            
+        </div>
+    </div>
+</div>
+

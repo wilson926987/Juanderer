@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Bookings">
+    <Key>
+      <PropertyRef Name="booklog" />
+    </Key>
+    <Property Name="booklog" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="schedule_id" Type="int" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="passenger_info_id" Type="int" />
+    <Property Name="numberofpassengers" Type="int" />
+    <Property Name="numberofseniour" Type="int" />
+    <Property Name="paymentoption" Type="varchar" MaxLength="20" />
+    <Property Name="paymentstatus" Type="varchar" MaxLength="20" />
+    <Property Name="clientemail" Type="varchar" MaxLength="50" />
+    <Property Name="clientnumber" Type="varchar" MaxLength="50" />
+    <Property Name="datecreated" Type="varchar" MaxLength="50" />
+    <Property Name="route_name" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Cargobooking">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="datecreated" Type="varchar" MaxLength="50" />
+    <Property Name="itemweight" Type="float" />
+    <Property Name="user_id" Type="int" />
+    <Property Name="status" Type="varchar" MaxLength="50" />
+    <Property Name="schedule_id" Type="int" />
+  </EntityType>
+  <EntityType Name="Groupbooking">
+    <Key>
+      <PropertyRef Name="group_id" />
+    </Key>
+    <Property Name="group_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="schedule_id" Type="int" />
+    <Property Name="discount" Type="float" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="groupId" />
+    </Key>
+    <Property Name="groupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="datecreated" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="PassengerInfo">
+    <Key>
+      <PropertyRef Name="info_id" />
+    </Key>
+    <Property Name="info_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="groupnumber" Type="int" />
+    <Property Name="firstname" Type="varchar" MaxLength="50" />
+    <Property Name="surname" Type="varchar" MaxLength="50" />
+    <Property Name="middle" Type="varchar" MaxLength="50" />
+    <Property Name="age" Type="int" />
+    <Property Name="passengertype" Type="varchar" MaxLength="50" />
+    <Property Name="isEnsured" Type="bit" />
+    <Property Name="isVaxxed" Type="bit" />
+  </EntityType>
+  <EntityType Name="Routes">
+    <Key>
+      <PropertyRef Name="route_id" />
+    </Key>
+    <Property Name="route_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="locationfrom" Type="varchar" MaxLength="50" />
+    <Property Name="locationto" Type="varchar" MaxLength="50" />
+    <Property Name="terminalfrom" Type="varchar" MaxLength="50" />
+    <Property Name="terminalto" Type="varchar" MaxLength="50" />
+    <Property Name="updatedpriceregular " Type="float" />
+    <Property Name="updatedpricetourist" Type="float" />
+    <Property Name="updatedpricebusiness" Type="float" />
+    <Property Name="updatedpricebusiness2" Type="float" />
+    <Property Name="mode" Type="varchar" MaxLength="50" />
+    <Property Name="updatedpricecargo" Type="float" />
+  </EntityType>
+  <EntityType Name="Schedule">
+    <Key>
+      <PropertyRef Name="schedule_id" />
+    </Key>
+    <Property Name="schedule_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="transport_name" Type="varchar" MaxLength="50" />
+    <Property Name="departuretime" Type="varchar" MaxLength="50" />
+    <Property Name="arrivaltime" Type="varchar" MaxLength="50" />
+    <Property Name="route_id" Type="int" />
+    <Property Name="priceregular" Type="float" />
+    <Property Name="pricetourist" Type="float" />
+    <Property Name="pricebusiness" Type="float" />
+    <Property Name="pricebusiness2" Type="float" />
+    <Property Name="sched_status" Type="varchar" MaxLength="50" />
+    <Property Name="booklimit" Type="int" />
+  </EntityType>
+  <EntityType Name="Terminal">
+    <Key>
+      <PropertyRef Name="terminal_id" />
+    </Key>
+    <Property Name="terminal_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="terminal_name" Type="varchar" MaxLength="50" />
+    <Property Name="terminal_location" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="transport">
+    <Key>
+      <PropertyRef Name="transport_id" />
+    </Key>
+    <Property Name="transport_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="transport_name" Type="varchar" MaxLength="50" />
+    <Property Name="transport_type" Type="varchar" MaxLength="6" />
+    <Property Name="transport_status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="userid" />
+    </Key>
+    <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="password" Type="varchar" MaxLength="50" />
+    <Property Name="usertype" Type="nchar" MaxLength="10" />
+    <Property Name="contactnumber" Type="varchar" MaxLength="50" />
+    <Property Name="city" Type="varchar" MaxLength="50" />
+    <Property Name="vaccinated" Type="varchar" MaxLength="50" />
+    <Property Name="fname" Type="varchar" MaxLength="50" />
+    <Property Name="lname" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityContainer Name="Database1ModelStoreContainer">
+    <EntitySet Name="Bookings" EntityType="Self.Bookings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cargobooking" EntityType="Self.Cargobooking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Groupbooking" EntityType="Self.Groupbooking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PassengerInfo" EntityType="Self.PassengerInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Routes" EntityType="Self.Routes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Schedule" EntityType="Self.Schedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Terminal" EntityType="Self.Terminal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="transport" EntityType="Self.transport" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

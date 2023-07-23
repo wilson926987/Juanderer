@@ -1,0 +1,238 @@
+﻿@model WebApplication1.Models.yNewUser
+
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Home/_Homelayout.cshtml";
+}
+
+
+
+<style>
+    .label1{
+        font-style :italic;
+        font-size: 12px;
+        margin-bottom: -4px;
+  
+    }
+
+
+
+
+</style>
+
+
+
+
+<div class="fh5co-hero">
+    <div class="fh5co-overlay"></div>
+    <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url('../../assets2/images/bgc.jpg'); overflow: auto; height: 900px;">
+        <div class="desc">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4" style="min-width: 250px;">
+
+                    </div>
+
+
+                    <div class="col-sm-5 col-md-5">
+                        <div class="tabulation animate-box">
+
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="flights">
+                                    <div class="row">
+
+
+                                        <div class="col-xxs-12 col-xs-12">
+                                            <center>
+                                                <h3 style="color: coral; font-weight: bold;">Register</h3>
+                                            </center>
+                                        </div>
+
+
+
+
+                                        @using (Html.BeginForm("tryregister", "Home", FormMethod.Post))
+                                        {
+
+                                            @Html.AntiForgeryToken()
+
+
+                                            <center>
+                                                <div class="col-xxs-12 col-xs-12   mt" style="margin-top: 30px;">
+                                                    <div class="input-field">
+
+                                                        @Html.EditorFor(model => model.fname, new { htmlAttributes = new { @class = "form-control", @style = "border-style: solid; border-color: black; border-width: 2px 2px 2px 2px; background-color: white; width:100%", @placeholder = " Firstname" } })<br />
+                              >
+                                                        @Html.ValidationMessageFor(model => model.fname, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </center>
+
+
+                                            <center>
+                                                <div class="col-xxs-12 col-xs-12   mt">
+                                                    <div class="input-field">
+
+                                                        @Html.EditorFor(model => model.lname, new { htmlAttributes = new { @class = "form-control", @style = "border-style: solid; border-color: black; border-width: 2px 2px 2px 2px; background-color: white; width:100%", @placeholder = " Lastname" } })<br />
+     
+                                                        @Html.ValidationMessageFor(model => model.lname, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </center>
+
+
+                                            <center>
+                                                <div class="col-xxs-12 col-xs-12   mt">
+                                                    <div class="input-field">
+
+                                                        @Html.EditorFor(model => model.username, new { htmlAttributes = new { @class = "form-control", @style = "border-style: solid; border-color: black; border-width: 2px 2px 2px 2px; background-color: white; width:100%", @placeholder = " Username" } })<br />
+                           
+                                                        @Html.ValidationMessageFor(model => model.username, "", new { @class = "text-danger" })
+                                                        <div style="color:black; text-align:center;">
+                                                            @Html.DisplayFor(model => model.userconfirmation, new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </center>
+
+
+                                            <center>
+                                                <div class="col-xxs-12 col-xs-12   mt">
+                                                    <div class="input-field">
+
+                                                        @Html.EditorFor(model => model.email1, new { htmlAttributes = new { @class = "form-control", @style = "border-style: solid; border-color: black; border-width: 2px 2px 2px 2px; background-color: white; width:100% ; color:#de615c", @placeholder = " Email" } })<br />
+                             
+                                                        @Html.ValidationMessageFor(model => model.email1, "", new { @class = "text-danger" })
+
+                                                    </div>
+                                                </div>
+                                            </center>
+
+
+
+                                            <center>
+                                                <div class="col-xxs-12 col-xs-12   mt">
+                                                    <div class="input-field">
+        
+                                                        @Html.EditorFor(model => model.confirmemail, new { htmlAttributes = new { @class = "form-control", @style = "border-style: solid; border-color: black; border-width: 2px 2px 2px 2px; background-color: white; width:100% ;color:#de615c", @placeholder = " Confirm email" } })<br />
+              
+                                                        @Html.ValidationMessageFor(model => model.confirmemail, "", new { @class = "text-danger" })
+
+                                                    </div>
+                                                </div>
+                                            </center>
+
+
+                                            <center>
+                                                <div class="col-xxs-12 col-xs-12 mt">
+                                                    <div class="input-field">
+              
+                                                        @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @style = "border-style: solid; border-color: black; border-width: 2px 2px 2px 2px; background-color: white; width:100%", @placeholder = " Password" } })<br />
+                          
+                                                        @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </center>
+
+
+
+                                            <center>
+                                                <div class="col-xxs-12 col-xs-12 mt">
+                                                    <div class="input-field">
+
+                            
+                                                        @Html.EditorFor(model => model.confirmpassword, new { htmlAttributes = new { @class = "form-control", @style = "border-style: solid; border-color: black; border-width: 2px 2px 2px 2px; background-color: white; width:100%", @placeholder = " Confirm Password" } })<br />
+                    
+                                                        @Html.ValidationMessageFor(model => model.confirmpassword, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </center>
+
+
+
+                                            <center>
+                                                <div class="col-xxs-12 col-xs-12 mt">
+                                                    <div class="input-field">
+
+
+                                                        @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control", @style = "border-style: solid; border-color: black; border-width: 2px 2px 2px 2px; background-color: white; width:100%", @placeholder = " Address" } })<br />
+                     
+                                                        @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </center>
+
+
+
+                                            <center>
+                                                <div class="col-xxs-12 col-xs-12   mt">
+                                                    <div class="input-field">
+
+                                                        @Html.EditorFor(model => model.contactnumber, new { htmlAttributes = new { @class = "form-control", @style = "border-style: solid; border-color: black; border-width: 2px 2px 2px 2px; background-color: white; width:100%; color:#de615c", @placeholder = " Contact Number" } })<br />
+                          
+                                                        @Html.ValidationMessageFor(model => model.contactnumber, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                            </center>
+
+                                    
+
+
+
+
+                                            <div class="col-xs-1"
+                                                 style="min-width: 110px;"></div>
+
+                                            <div class="col-xs-6">
+                                                <input type="submit" class="btn btn-primary btn-block" value="Sign in" style="height: 30px; padding:0px">
+                                            </div>
+
+
+                                            <div class="col-xs-3" style="min-width: 400px; margin-top: 80px;">
+
+                                            </div>
+
+
+
+
+
+                                        }
+
+
+
+
+
+
+                                        <div class="col-xs-6">
+                                            @Html.ActionLink("already have an account", "Login", "Home")
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+
+
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,247 @@
+﻿
+@{
+    ViewBag.Title = "Viewbookings";
+    Layout = "~/Views/Admin/_Adminlayout.cshtml";
+}
+
+
+
+<head>
+    <style>
+        p {
+            font-size: 15px !important;
+        }
+
+        .template1 {
+        }
+
+        .card1 {
+            margin-right: 10px;
+            margin-left: 10px;
+            min-width: 100px;
+            min-height: 100px;
+        }
+
+
+        .panel1 {
+        }
+
+
+        thead {
+            font-weight: bold;
+        }
+
+        .grouptable {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+            .grouptable tr {
+                border-bottom: 1px solid #cdcdcd;
+            }
+    </style>
+
+
+
+
+</head>
+
+
+
+@if (ViewBag.modalstate == "viewing_info")
+{
+
+
+
+    <div class="modal fade" id="sample" >
+        <div class="modal-dialog ">
+            <div class="modal-content col-lg-12">
+                <div class="modal-header">
+                    <h3 class="modal-title" style="align-self:flex-start">Booking details</h3>
+                </div>
+                @if (ViewBag.travel != null)
+                {
+                    <div style="margin:20px">
+                        <h4>
+                            Locations : @ViewBag.travel
+                        </h4>
+                        <h5>
+                            Terminal : @ViewBag.terminal    <br />
+                            Departure: @ViewBag.departure          <br />
+                            Accomodation type: @ViewBag.thispaymentoption <br />
+                            email: @ViewBag.thisclientemail <br />
+                            contact:@ViewBag.thisclientcontact <br />
+                            status :@ViewBag.paymentstatus
+                        </h5>
+
+                        <h4>Group information</h4>
+                        <div>
+
+                            <table class="grouptable">
+                                <thead>
+                                    <tr>
+                                        <th>Firstname</th>
+                                        <th>Lastname</th>
+                                        <th>Middle</th>
+                                        <th>Age</th>
+                                        <th>Ensurred</th>
+                                        <th>Vaccinated </th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var tt in ViewBag.tempgroup)
+                                    {
+                                        <tr>
+                                            <td>@tt.firstname</td>
+                                            <td>@tt.surname</td>
+                                            <td>@tt.middle</td>
+                                            <td>@tt.age</td>
+                                            <td>@tt.isEnsured</td>
+                                            <td>@tt.isVaxxed</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+                <img src="~/assets2/images/vertical logo-nobg-black ver.png" class="bg-modal" />
+            </div>
+        </div>
+    </div>
+
+
+
+
+}
+
+
+
+
+
+
+
+
+<div class="main-panel" id="main-panel" style="margin-top: -50px;">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+        <div class="">
+            <div class="navbar-wrapper">
+
+                <h1>Bookings</h1>
+            </div>
+
+
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="panel-header panel-header-sm" style="background: linear-gradient( 161deg, #de615c, #de615c); ">
+
+    </div>
+    <div class="content">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card card-chart dashboard-panel">
+                    <div class="card-header">
+
+
+                    </div>
+                    <div class="dropdown">
+                        <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown" aria-expanded="false" style="height:50px; width:50px">
+
+                            <img src="~/assets2/images/settings.png" style="height:20px; width:20px" />
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-right">
+
+                            <a href="@Url.Action("Viewbookings", "Admin")" class="dropdown-item">Refresh</a>
+
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+
+                        <div class="table-responsive">
+
+                            <table class="table">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>
+                                            Date created
+
+                                        </th>
+
+                                        <th>
+                                            Travel
+                                        </th>
+
+                                        <th>
+                                            Email
+                                        </th>
+
+                                        <th>
+                                            Accomodation type
+                                        </th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    @foreach (var vv in ViewBag.bookinglist)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @vv.datecreated
+                                            </td>
+                                            <td>
+                                                @vv.travelfrom to @vv.travelto
+                                            </td>
+                                            <td>
+                                                @vv.email
+                                            </td>
+
+                                            <td>
+                                                @vv.accomodation
+                                            </td>
+                                            <td>
+                                                @vv.status
+                                            </td>
+                                            <td>
+                                                <p class="btn btn-info btn-md" style="width:75px; border-radius:75px !important;">@Html.ActionLink("view", "Viewbookings", "Admin", new { x = vv.bookid }, new { @style = " text-decoration:none; color: white;" })</p>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--modal-->
+<!--end of modal-->
+
+@section Scripts {
+
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#sample").modal('show');
+
+        });
+    </script>
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+
+
+}

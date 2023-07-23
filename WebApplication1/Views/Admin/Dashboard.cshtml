@@ -1,0 +1,739 @@
+﻿@model WebApplication1.Models.ySchedule
+
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Admin/_Adminlayout.cshtml";
+}
+
+<head>
+    <style type="text/css">
+        .template1 {
+        }
+
+        .card1 {
+            margin-right: 10px;
+            margin-left: 10px;
+            min-width: 100px;
+            min-height: 100px;
+        }
+
+        .sample {
+            text-decoration: none;
+            text-align: center;
+            align-items: center;
+            margin: 0 auto;
+            height: 40px;
+        }
+
+            .sample:hover {
+                text-decoration: none;
+                text-align: center;
+                background: #555;
+            }
+
+        .sample2 {
+            text-decoration: none;
+            text-align: center;
+            color: white;
+            margin: 0 auto;
+            height: 40px;
+        }
+
+            .sample2:hover {
+                text-decoration: none;
+                text-align: center;
+                background: #555;
+            }
+
+        .bg-1 {
+            background: url('../../assets/img/pngs/img-1.png') no-repeat 0, 0;
+            position: relative;
+        }
+
+        .bg-2 {
+            background: url('../../assets/img/pngs/img-2.png') no-repeat 0, 0;
+            position: relative;
+        }
+
+        .bg-booking-gradient {
+            background: linear-gradient(to top, #2556cc, #4785fc);
+            content: " ";
+            top: 0;
+            left: 0;
+            color: white;
+            z-index: 0;
+        }
+
+        .bg-cargo-gradient {
+            background: linear-gradient(to top, #29ac9c, #5cc2b4);
+            content: " ";
+            top: 0;
+            left: 0;
+            color: white;
+            z-index: 0;
+        }
+
+        .bg-user-gradient {
+            background: linear-gradient(to top, #681dec, #7473e8);
+            content: " ";
+            top: 0;
+            left: 0;
+            color: white;
+            z-index: 0;
+        }
+    </style>
+
+    <link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+
+</head>
+
+
+
+
+<div class="modal fade" id="Addsched1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+
+                <h3 class="modal-title">Adding Schedule</h3>
+
+            </div>
+
+            @using (Html.BeginForm("addschedule2", "Admin", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="modal-body" style="z-index:1">
+                    <table>
+                        <tr>
+                            <th><p>Route </p></th>
+                            <td></td>
+                            <td>
+                                @Html.DropDownListFor(model => model.route_id, new SelectList(ViewBag.routaland, "value", "text", "--select route--"), "--select route--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.route_id, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Transport Unit</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.transport_name, new SelectList(ViewBag.transportland, "value", "text", "--select route--"), "--select transport--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.transport_name, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Departure</p></th>
+                            <td></td>
+                            <td>
+                                @Html.EditorFor(model => model.departuretime, new { htmlAttributes = new { @class = "form-control datepicker", @autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.departuretime, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Arrival</p></th>
+                            <td></td>
+                            <td>
+                                @Html.EditorFor(model => model.arrivaltime, new { htmlAttributes = new { @class = "form-control datepicker", @autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.arrivaltime, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Create" class="btn btn-success" style="z-index:1;"/>
+                </div>
+            }
+            <img src="~/assets2/images/vertical logo-nobg-black ver.png" class="bg-modal" />
+        </div>
+    </div>
+
+</div>
+
+
+<div class="modal fade" id="Addsched2">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h3 class="modal-title">Adding Schedule</h3>
+
+            </div>
+
+            @using (Html.BeginForm("addschedule2", "Admin", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="modal-body" style="z-index:1;">
+                    <table>
+                        <tr>
+                            <th><p>Route</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.route_id, new SelectList(ViewBag.routasea, "value", "text", "--select route--"), "--select route--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.route_id, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Transport Unit</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.transport_name, new SelectList(ViewBag.transportsea, "value", "text", "--select route--"), "--select transport--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.transport_name, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Departure</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.EditorFor(model => model.departuretime, new { htmlAttributes = new { @class = "form-control datepicker", @autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.departuretime, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Arrival</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.EditorFor(model => model.arrivaltime, new { htmlAttributes = new { @class = "form-control datepicker", @autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.arrivaltime, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </table>         
+                </div>
+                <div class="modal-footer">
+
+                    <input type="submit" value="Create" class="btn btn-success" style="z-index:1;" />
+
+                </div>
+            }
+            <img src="~/assets2/images/vertical logo-nobg-black ver.png" class="bg-modal" />
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="Addsched3">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h3 class="modal-title">Adding Schedule</h3>
+
+            </div>
+
+            @using (Html.BeginForm("addschedule2", "Admin", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="modal-body" style="z-index:1;">
+                    <table>
+                        <tr>
+                            <th><p>Route</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.route_id, new SelectList(ViewBag.routaair, "value", "text", "--select route--"), "--select route--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.route_id, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Transport Unit</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.transport_name, new SelectList(ViewBag.transportair, "value", "text", "--select route--"), "--select transport--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.transport_name, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Departure</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.EditorFor(model => model.departuretime, new { htmlAttributes = new { @class = "form-control datepicker", @autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.departuretime, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Arrival</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.EditorFor(model => model.arrivaltime, new { htmlAttributes = new { @class = "form-control datepicker", @autocomplete = "off" } })
+                                @Html.ValidationMessageFor(model => model.arrivaltime, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Create" class="btn btn-success" style="z-index:1;" />
+                </div>
+            }
+            <img src="~/assets2/images/vertical logo-nobg-black ver.png" class="bg-modal" />
+        </div>
+    </div>
+
+</div>
+
+
+@if (ViewBag.modalstate != null)
+{
+    <div class="modal fade" id="sample"
+         style="margin-top: 400px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h3 class="modal-title">
+                        @ViewBag.modalstate
+                    </h3>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+<div class="main-panel" id="main-panel" style="margin-top: -50px;">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+        <div class="">
+            <div class="navbar-wrapper">
+
+                <h1>Dashboard</h1>
+            </div>
+
+
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="panel-header panel-header-sm" style="background: linear-gradient( 161deg, #de615c, #de615c); ">
+
+    </div>
+    <div class="content">
+        <div class="row">
+
+            <div class="col-lg-12">
+
+                <div class="col-lg-4">
+                    <div class="card card-chart dashboard-panel bg-booking-gradient bg-1">
+                        <div class="card-header">
+
+                            <h3 class="card-title">Bookings</h3>
+                        </div>
+                        <hr><img src="~/assets/img/pngs/img-2.png" alt="img" style="position:absolute; top: -3px; text-align: right; right: 1px;" />
+                        <div class="card-body">
+
+                            <div class="row">
+                                <div class="col-lg-6"><span>Pending </span></div>
+                                <div class="col-lg-6"><center><span>@ViewBag.booknumber1 </span></center></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6"><span>Payment approved </span></div>
+                                <div class="col-lg-6"><center><span>@ViewBag.booknumber2 </span></center></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6"><span>Cancelled </span></div>
+                                <div class="col-lg-6"><center><span>@ViewBag.booknumber3 </span></center></div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4">
+                    <div class="card card-chart dashboard-panel bg-cargo-gradient bg-2">
+                        <div class="card-header">
+                            <h3 class="card-title">Cargo</h3>
+                        </div>
+                        <hr><img src="~/assets/img/pngs/img-1.png" alt="img" style="position:absolute; top: -3px; text-align: right; right: 1px;" />
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-lg-6"><span>Pending </span></div>
+                                <div class="col-lg-6"><center><span>@ViewBag.cargocount1 </span></center></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6"><span>Payment approved </span></div>
+                                <div class="col-lg-6"><center><span>@ViewBag.cargocount2 </span></center></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6"><span>Cancelled </span></div>
+                                <div class="col-lg-6"><center><span>@ViewBag.cargocount3 </span></center></div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-4">
+                    <div class="card card-chart dashboard-panel bg-user-gradient bg-1">
+                        <div class="card-header">
+
+                            <h3 class="card-title">Users</h3>
+                        </div>
+                        <hr><img src="~/assets/img/pngs/img-2.png" alt="img" style="position:absolute; top: -3px; text-align: right; right: 1px;"/>
+                        <div class="card-body">
+                            <h1>
+                                @ViewBag.usercount
+                            </h1>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="col-lg-12">
+
+                <div class="col-lg-12">
+                    <div class="card card-chart dashboard-panel">
+                        <div class="card-header">
+
+                            <h4 class="card-title"> Land Travel Schedule </h4>
+                        </div>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown" aria-expanded="false" style="height:50px; width:50px">
+
+                                <img src="~/assets2/images/settings.png" style="height:20px; width:20px" />
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+
+
+                                <a class="dropdown-item" data-toggle="modal" data-target="#Addsched1"> Add schedule</a>
+
+                                <a class="dropdown-item" href="#">Update Price list</a>
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                        <tr>
+                                            <th colspan="3">
+                                                Origin
+                                            </th>
+
+
+                                            <th colspan="3">
+                                                Destination
+                                            </th>
+
+                                            <th>
+                                                Transport
+                                            </th>
+
+
+                                            <th class="text-right">
+
+                                            </th>
+                                            <th class="text-right">
+
+                                            </th>
+                                            <th class="text-right">
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var vv in ViewBag.schedland)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @vv.locationfrom
+                                                </td>
+
+                                                <td>
+                                                    @vv.terminalfrom
+                                                </td>
+                                                <td style="border-right:solid white">
+                                                    @vv.departuretime
+                                                </td>
+
+                                                <td>
+                                                    @vv.locationto
+                                                </td>
+                                                <td>
+                                                    @vv.terminalto
+                                                </td>
+                                                <td style="border-right:solid white">
+                                                    @vv.arrivaltime
+                                                </td>
+                                                <td>
+                                                    @vv.transportname
+                                                </td>
+                                                <td>
+                                                   <a href="@Url.Action("toggleopen", "Admin", new {index1 = vv.sched_id})" style="width:100px; border-radius:75px !important;" class="btn btn-primary btn-md"> @vv.sched_status</a>
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("delete", "deletesched", "Admin", new { x = vv.sched_id }, new { @class = "btn btn-danger btn-md", @style = "width:75px; border-radius:75px !important;" })
+                                                </td>
+                                            </tr>
+                                            
+                                        }
+
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="card card-chart dashboard-panel">
+                        <div class="card-header">
+
+                            <h4 class="card-title"> Sea Travel Schedule </h4>
+                        </div>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown" aria-expanded="false" style="height:50px; width:50px">
+
+                                <img src="~/assets2/images/settings.png" style="height:20px; width:20px" />
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+
+                                <a class="dropdown-item" data-toggle="modal" data-target="#Addsched2"> Add schedule</a>
+                                <a class="dropdown-item" href="#">Update Price list</a>
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                        <tr>
+                                            <th colspan="3">
+                                                Origin
+                                            </th>
+
+
+                                            <th colspan="3">
+                                                Destination
+                                            </th>
+
+                                            <th>
+                                                Transport
+                                            </th>
+                                            <th class="text-right">
+
+                                            </th>
+
+                                            <th class="text-right">
+
+                                            </th>
+                                            <th class="text-right">
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var vv in ViewBag.schedwater)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @vv.locationfrom
+                                                </td>
+
+                                                <td>
+                                                    @vv.terminalfrom
+                                                </td>
+                                                <td style="border-right:solid white">
+                                                    @vv.departuretime
+                                                </td>
+
+                                                <td>
+                                                    @vv.locationto
+                                                </td>
+                                                <td>
+                                                    @vv.terminalto
+                                                </td>
+                                                <td style="border-right:solid white">
+                                                    @vv.arrivaltime
+                                                </td>
+                                                <td>
+                                                    @vv.transportname
+                                                </td>
+                                                <td>
+                                                    <a href="@Url.Action("toggleopen", "Admin", new {index1 = vv.sched_id})" style="width:100px; border-radius:75px !important;" class="btn btn-primary btn-md"> @vv.sched_status</a>
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("delete", "deletesched", "Admin", new { x = vv.sched_id }, new { @class = "btn btn-danger btn-md", @style = "width:75px; border-radius:75px !important;" })
+                                                </td>
+
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-12">
+                    <div class="card card-chart dashboard-panel">
+                        <div class="card-header">
+
+                            <h4 class="card-title"> Air Travel Schedule </h4>
+                        </div>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown" aria-expanded="false" style="height:50px; width:50px">
+
+                                <img src="~/assets2/images/settings.png" style="height:20px; width:20px" />
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+
+                                <a class="dropdown-item" data-toggle="modal" data-target="#Addsched3"> Add schedule</a>
+                                <a class="dropdown-item" href="#">Update Price list</a>
+
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                        <tr>
+                                            <th colspan="3">
+                                                Origin
+                                            </th>
+
+
+                                            <th colspan="3">
+                                                Destination
+                                            </th>
+
+                                            <th>
+                                                Transport
+                                            </th>
+
+
+                                            <th class="text-right">
+
+                                            </th>
+                                            <th class="text-right">
+
+                                            </th>
+                                            <th class="text-right">
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var vv in ViewBag.schedair)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @vv.locationfrom
+                                                </td>
+
+                                                <td>
+                                                    @vv.terminalfrom
+                                                </td>
+                                                <td style="border-right:solid white">
+                                                    @vv.departuretime
+                                                </td>
+
+                                                <td>
+                                                    @vv.locationto
+                                                </td>
+                                                <td>
+                                                    @vv.terminalto
+                                                </td>
+                                                <td style="border-right:solid white">
+                                                    @vv.arrivaltime
+                                                </td>
+                                                <td>
+                                                    @vv.transportname
+                                                </td>
+                                                <td>
+                                                    <a href="@Url.Action("toggleopen", "Admin", new {index1 = vv.sched_id})" style="width:100px; border-radius:75px !important;" class="btn btn-primary btn-md"> @vv.sched_status</a>
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("delete", "deletesched", "Admin", new { x = vv.sched_id }, new { @class = "btn btn-danger btn-md", @style = "width:75px; border-radius:75px !important;" })
+                                                </td>
+                                            </tr>
+
+                                        }
+
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+s
+
+@section Scripts {
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.datetimepicker.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script>
+        $(function () {
+            $(".datepicker").datetimepicker({
+
+                format: "h:ia d/M/y  D",
+                weeks: true,
+                confirm : true
+            });
+
+        });
+
+    </script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#sample").modal('show');
+
+        });
+    </script>
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

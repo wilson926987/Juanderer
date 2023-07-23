@@ -1,0 +1,676 @@
+﻿@model WebApplication1.Models.yRoutepage
+
+@{
+    ViewBag.Title = "Route";
+    Layout = "~/Views/Admin/_Adminlayout.cshtml";
+}
+
+
+<style>
+    p {
+        font-size: 15px !important;
+    }
+
+    .template1 {
+    }
+
+    .card1 {
+        margin-right: 10px;
+        margin-left: 10px;
+        min-width: 100px;
+        min-height: 100px;
+    }
+
+
+    .panel1 {
+    }
+
+    tr {
+        margin-bottom: 20px;
+    }
+</style>
+
+
+
+
+
+
+
+
+<div class="main-panel" id="main-panel" style="margin-top: -50px;">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
+        <div class="">
+            <div class="navbar-wrapper">
+
+                <h1>Routes</h1>
+            </div>
+
+
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="panel-header panel-header-sm" style="background: linear-gradient( 161deg, #de615c, #de615c); ">
+
+    </div>
+    <div class="content">
+        <div class="row">
+
+            <div class="col-lg-12" style="overflow:auto">
+
+                <div class="col-lg-12">
+                    <div class="card card-chart dashboard-panel">
+                        <div class="card-header">
+
+
+                        </div>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown" aria-expanded="false" style="height:50px; width:50px">
+
+                                <img src="~/assets2/images/settings.png" style="height:20px; width:20px" />
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+
+                                <a href="@Url.Action("Route", "Admin")" class="dropdown-item">
+                                    Refresh
+                                </a>
+
+                                <a class="dropdown-item" data-toggle="modal" data-target="#Addroute1"> Add route</a>
+
+                                <div class="dropdown-item">
+                                    @using (Html.BeginForm("searchroute", "Admin", FormMethod.Post))
+                                    {
+                                        @Html.AntiForgeryToken()
+
+                                        @Html.EditorFor(model => model.searchtxt, new { htmlAttributes = new { @class = "form-control", @placeholder = "search location" } })
+                                        <input type="submit" value="Search" class="btn btn-default" />
+                                    }
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="card-body">
+
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                        <tr>
+                                            <th>
+                                                Origin
+                                            </th>
+
+
+                                            <th>
+                                                Destination
+                                            </th>
+
+                                            <th>
+                                                Type
+                                            </th>
+
+                                            <th>
+                                                Regular rate
+                                            </th>
+
+                                            <th>
+                                                Tourist rate
+                                            </th>
+                                            <th>
+                                                Business rate
+                                            </th>
+                                            <th>
+                                                Business class 2 rate
+                                            </th>
+
+                                            <th>
+                                                Cargo rate
+                                            </th>
+
+
+
+
+                                            <th class="text-right">
+
+                                            </th>
+                                            <th class="text-right">
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var uu in ViewBag.routes)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @uu.terminalfrom
+                                                    <br />
+                                                    @uu.locationfrom
+                                                </td>
+                                                <td>
+                                                    @uu.terminalto
+                                                    <br />
+                                                    @uu.locationto
+                                                </td>
+                                                <td>
+                                                    @uu.mode
+                                                </td>
+                                                <td>
+                                                    @uu.updatedpriceregular_
+                                                </td>
+                                                <td>
+                                                    @uu.updatedpricetourist
+                                                </td>
+                                                <td>
+                                                    @uu.updatedpricebusiness
+                                                </td>
+                                                <td>
+                                                    @uu.updatedpricebusiness2
+                                                </td>
+                                                <td>
+                                                    @uu.updatedpricecargo
+                                                </td>
+
+                                                <td>
+                                                    <p class="btn btn-info btn-md" style="width:75px; border-radius:75px !important;">@Html.ActionLink("view", "Route", "Admin", new { index1 = uu.route_id }, new { @style = " text-decoration:none; color: white;" })</p>
+                                                </td>
+                                            </tr>
+
+                                        }
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-lg-6">
+                    <div class="card card-chart dashboard-panel">
+                        <div class="card-header">
+
+                            <h4 class="card-title"> Terminals </h4>
+                        </div>
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown" aria-expanded="false" style="height:50px; width:50px">
+
+                                <img src="~/assets2/images/settings.png" style="height:20px; width:20px" />
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+
+
+                                <a class="dropdown-item" data-toggle="modal" data-target="#Addterminal1"> Add terminal</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                        <tr>
+                                            <th>
+                                                Terminal name
+                                            </th>
+
+
+                                            <th>
+                                                Terminal location
+                                            </th>
+
+
+
+                                            <th class="text-right">
+
+                                            </th>
+                                            <th class="text-right">
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var uu in ViewBag.terminal)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @uu.terminal_name
+                                                </td>
+                                                <td>
+                                                    @uu.terminal_location
+                                                </td>
+                                            </tr>
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-6">
+                    <div class="card card-chart dashboard-panel">
+                        <div class="card-header">
+
+                            <h4 class="card-title"> Transport Units </h4>
+                        </div>
+
+
+                        <div class="dropdown">
+                            <button type="button" class="btn btn-round btn-outline-default dropdown-toggle btn-simple btn-icon no-caret" data-toggle="dropdown" aria-expanded="false" style="height:50px; width:50px">
+
+                                <img src="~/assets2/images/settings.png" style="height:20px; width:20px" />
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#AddUnit1"> Add transport unit</a>
+                            </div>
+                        </div>
+                        <div class="card-body">
+
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead class=" text-primary">
+                                        <tr>
+                                            <th>
+                                                Transport name
+                                            </th>
+
+
+                                            <th>
+                                                Type
+                                            </th>
+                                            <th>
+                                                status
+                                            </th>
+
+
+
+                                            <th class="text-right">
+
+                                            </th>
+                                            <th class="text-right">
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var uu in ViewBag.transports)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @uu.transport_name
+                                                </td>
+                                                <td>
+                                                    @uu.transport_type
+                                                </td>
+                                                <td>
+
+                                                    <a href="@Url.Action("toggletransportstats", "Admin", new {index1 = uu.transport_id})"> @uu.transport_status</a>
+                                                </td>
+                                            </tr>
+                                        }
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+
+
+<div class="modal fade" id="Addroute1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h3 class="modal-title" style="align-self:flex-start">Adding Routes</h3>
+
+            </div>
+
+            @using (Html.BeginForm("saveroute", "Admin", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="modal-body" style="z-index:1;">
+                    <table>
+                        <tr>
+                            <th><p>Terminal from</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.terminalfrom, new SelectList(ViewBag.terminallist, "value", "text", "--select terminal--"), "--select terminal--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.terminalfrom, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Terminal to</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.terminalto, new SelectList(ViewBag.terminallist, "value", "text", "--select terminal--"), "--select terminal--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.terminalto, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Type</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.routemode, new SelectList(ViewBag.tempmode1), "--select route--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.routemode, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>regular rate</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.EditorFor(model => model.price1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.price1, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>tourist rate</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.EditorFor(model => model.price2, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.price2, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>business rate</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.EditorFor(model => model.price3, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.price3, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>business class2 rate</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.EditorFor(model => model.price4, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.price4, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>cargo rate </p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.EditorFor(model => model.pricecargo, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.pricecargo, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+
+                    <input type="submit" value="Create" class="btn btn-success" style="z-index:1;" />
+
+                </div>
+            }
+            <img src="~/assets2/images/vertical logo-nobg-black ver.png" class="bg-modal" />
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="Addterminal1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h3 class="modal-title" style="align-self:flex-start">Adding Terminal</h3>
+
+            </div>
+
+            @using (Html.BeginForm("saveterminal", "Admin", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="modal-body" style="z-index:1;">
+                    <table>
+                        <tr>
+                            <th><p>Terminal name</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.EditorFor(model => model.terminalname, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.terminalname, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Terminal location</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.EditorFor(model => model.terminallocation, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.terminallocation, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Create" class="btn btn-success" style="z-index:1;" />
+                </div>
+            }
+            <img src="~/assets2/images/vertical logo-nobg-black ver.png" class="bg-modal" />
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="AddUnit1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h3 class="modal-title" style="align-self:flex-start">Adding Transport Units</h3>
+
+            </div>
+
+            @using (Html.BeginForm("savetransport", "Admin", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="modal-body" style="z-index:1;">
+                    <table>
+                        <tr>
+                            <th><p>Unit name</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.EditorFor(model => model.transportname, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.transportname, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Type</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.trasnporttype, new SelectList(ViewBag.tempmode1), "--select type--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.transportstatus, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><p>Unit status</p></th>
+                            <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                            <td>
+                                @Html.DropDownListFor(model => model.transportstatus, new SelectList(ViewBag.transportstatus), "--select status--", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.transportstatus, "", new { @class = "text-danger" })
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" value="Create" class="btn btn-success" style="z-index:1;" />
+                </div>
+            }
+            <img src="~/assets2/images/vertical logo-nobg-black ver.png" class="bg-modal" />
+        </div>
+    </div>
+
+</div>
+
+
+
+
+@if (ViewBag.modalstate != null)
+{
+
+
+    if (ViewBag.modalstate == "updating_route")
+    {
+        <div class="modal fade" id="sample">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h3 class="modal-title" style="align-self:flex-start">Update routes</h3>
+
+                    </div>
+
+                    @using (Html.BeginForm("updaterouteprices", "Admin", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="modal-body" style="z-index:1;">
+                            @Html.HiddenFor(Model => Model.routeId, new { @Value = ViewBag.routeindex })
+                            <table>
+                                <tr>
+                                    <th><p>Regular rate</p></th>
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.price1, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.priceregular } })
+                                        @Html.ValidationMessageFor(model => model.price1, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><p>Tourist rate</p></th>
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.price2, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.pricetourist } })
+                                        @Html.ValidationMessageFor(model => model.price2, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><p>Business rate</p></th>
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.price3, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.pricebusiness } })
+                                        @Html.ValidationMessageFor(model => model.price3, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><p>Business class 2 rate</p></th>
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.price4, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.pricebusiness2 } })
+                                        @Html.ValidationMessageFor(model => model.price4, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><p>Cargo rate<p></th>
+                                    <td>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                    <td>
+                                        @Html.EditorFor(model => model.pricecargo, new { htmlAttributes = new { @class = "form-control", @Value = ViewBag.pricecargo } })
+                                        @Html.ValidationMessageFor(model => model.pricecargo, "", new { @class = "text-danger" })
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" value="Done" class="btn btn-success" style="z-index:1;" />
+                        </div>
+                    }
+
+
+
+                    <img src="~/assets2/images/vertical logo-nobg-black ver.png" class="bg-modal" />
+                </div>
+
+            </div>
+        </div>
+
+
+    }
+    else
+    {
+        <div class="modal fade" id="sample"
+             style="margin-top: 400px;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <h3 class="modal-title">
+                            @ViewBag.modalstate
+                        </h3>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+@section Scripts {
+
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#sample").modal('show');
+
+        });
+    </script>
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+
+
+}

@@ -1,0 +1,216 @@
+﻿
+@{
+    ViewBag.Title = "mybookingsandProfile";
+    Layout = "~/Views/Home/_Homelayout.cshtml";
+}
+
+
+<style>
+    table {
+        table-layout: fixed;
+        color: black;
+        font-family: "Open Sans", Arial, sans-serif;
+        border-spacing: 10px;
+        border-collapse: separate;
+        box-shadow: 4px 4px 4px rgb(124, 148, 148);
+    }
+
+
+
+    table1 {
+        width: 100%;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+
+    .table1 tr:nth-child(even) {
+        background-color: #f5a46b;
+    }
+
+    .table1 tr:nth-child(odd) {
+        background-color: #f5b181;
+    }
+
+
+    .booking-panel {
+        background-color: rgb(207, 198, 190);
+        border-radius: 8px;
+        border: black 1px;
+        margin-bottom: 8px;
+        margin-right: 8px;
+        min-height: 40px;
+        box-shadow: 4px 4px 4px rgb(106, 124, 124);
+        padding-top: 13px;
+        padding-bottom: 13px;
+    }
+</style>
+
+
+
+@if (ViewBag.modalstate != null)
+{
+
+    <div class="modal fade" id="confirmvaxx" style="margin-top: 400px;">
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h3 class="modal-title">My Profile</h3>
+
+                </div>
+                <div class="modal-dialog">
+
+                    <h5>@ViewBag.modalstate</h5>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+}
+
+
+
+
+
+<div class="fh5co-hero">
+    <div class="fh5co-overlay"></div>
+    <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url('../../assets2/images/bgc.jpg'); overflow: auto; height: 900px;">
+        <div class="desc">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-md-5">
+                        <div class="tabulation animate-box">
+
+                            <!-- Nav tabs -->
+
+
+
+                            <div class="tab-title">
+                                <h4 style="margin-left: 30px">@ViewBag.currentuser 's profile</h4>
+
+                            </div>
+
+
+
+
+
+                            <!-- Tab panes -->
+                            <div class="tab-content" style=" margin-top: -40px;">
+                                <hr><hr>
+                                <div role="tabpanel" class="tab-pane active" id="flights">
+                                    <div class="row">
+                                        <table>
+                                            <tr>
+                                                <th>Username: </th>
+                                                <td>@ViewBag.username1</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Email: </th>
+                                                <td>@ViewBag.email1</td>
+
+                                            </tr>
+                                            <tr>
+                                                <th>Contact number:</th>
+                                                <td>none</td>
+                                            </tr>
+                                            <tr>
+                                                <th></th>
+                                                <td>
+                                                    @Html.ActionLink("edit profile", "editprofile", "Home", new { area = "" }, new { @class = "btn btn-primary btn-block", @style = "height: 25px; width: 80px; padding:0px; font-size: 12px;" })
+
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-sm-7 col-md-7">
+                        <div class="tabulation animate-box">
+
+                            <!-- Nav tabs -->
+
+
+                            <div class="tab-title">
+                                <h4>My Travel bookings</h4>
+
+                            </div>
+
+
+                            <!-- Tab panes -->
+                            <div class="tab-content" style="margin-top:-30px">
+                                <div role="tabpanel" class="tab-pane active" id="flights">
+                                    <div class="row">
+
+
+                                        @foreach (var yy in ViewBag.bookingsko)
+                                        {
+                                            <div class="col-lg-12 booking-panel">
+                                                <div class="col-lg-6">
+                                                    <h4>@yy.locationfrom to @yy.locationto</h4>
+                                                    <h5 style="margin:10px">departure date: @yy.departuretime </h5>
+                                                    <h5 style="margin:10px">departure : @yy.terminalfrom </h5>
+                                                    <h5 style="margin:10px">number of passengers: @yy.numberofpassenger </h5>
+                                                    <h5 style="margin:10px"> accomodation: @yy.paymenttype </h5>
+                                                    <h5>
+                                                        @Html.ActionLink("Cancel", "cancelbooking", "Home", new { index1 = yy.book_id }, new { @class = "" })
+                                                    </h5>
+                                                </div>
+                                                <div class="col-lg-3">
+                                                    <img src="images/ship1.jpg" alt="" style="width:200px; height:auto; margin: 30px; border-radius:8px;">
+                                                </div>
+                                            </div>
+
+                                        }
+                                        <div class="col-lg-12 booking-panel">
+
+
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+@section Scripts {
+
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#confirmvaxx").modal('show');
+
+        });
+    </script>
+
+
+
+    @Scripts.Render("~/bundles/jqueryval")
+}
